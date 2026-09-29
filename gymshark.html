@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gymshark AI Coworker | Namratha K</title>
+<meta name="description" content="AI-assisted influencer marketing platform for Gymshark, built by Namratha K.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header>
+  <nav class="wrap">
+    <a href="index.html" class="logo">Namratha<span>.</span></a>
+    <ul class="links" id="links">
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#experience">Experience</a></li>
+      <li><a href="index.html#projects">Projects</a></li>
+      <li><a href="index.html#skills">Skills</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+      <li><a class="btn" href="assets/resume.pdf" target="_blank" rel="noopener">Résumé</a></li>
+    </ul>
+    <div style="display:flex;gap:8px">
+      <button class="theme" id="theme" aria-label="Toggle light and dark mode"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
+      <button class="theme menu" id="menu" aria-label="Open menu"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    </div>
+  </nav>
+</header>
+<main><div class="wrap">
+<a class="back" href="index.html#projects">← All projects</a>
+
+<div class="phero">
+  <p class="eyebrow">Academic project · AI + marketing</p>
+  <h1>Gymshark AI Coworker</h1>
+  <p class="lede">An end-to-end, AI-assisted influencer marketing platform for Gymshark. It discovers and scores YouTube fitness creators, evaluates audience and brand-safety risk, drafts personalized outreach, generates product briefs, and analyzes campaign performance, all through a Next.js dashboard backed by FastAPI.</p>
+</div>
+<dl class="pmeta">
+  <div><dt>Type</dt><dd>Academic project</dd></div>
+  <div><dt>Stack</dt><dd>Python, FastAPI, Next.js, Claude API, RAG, MCP</dd></div>
+  <div><dt>Deployed</dt><dd>Vercel (frontend) · Render (backend)</dd></div>
+</dl>
+<div class="cover"><img src="assets/gymshark.jpg" alt="GymsharkNexus operations console"></div>
+<div class="plinks"><a class="btn solid" href="https://gymshark-automation-2hjm-d9mzqla8r-namratha7.vercel.app/" target="_blank" rel="noopener">Open live demo ↗</a></div>
+
+<div class="body">
+<section>
+  <h2>How it works</h2>
+  <div class="steps">
+    <div class="step"><div class="n">STEP 01</div><h4>Creator discovery &amp; scoring</h4><ul>
+      <li>Reads creator profiles from <code>creators.csv</code>.</li>
+      <li>Scores on brand fit, authenticity, niche alignment, engagement, audience size, and tier-specific thresholds.</li>
+      <li>Applies disqualifiers like competitor loyalty, brand-safety concerns, clickbait, or existing partnerships.</li>
+      <li>Produces a ranked shortlist.</li></ul></div>
+    <div class="step"><div class="n">STEP 02</div><h4>Sentiment &amp; risk analysis</h4><ul>
+      <li>Processes comment data from <code>comment_sentiment.csv</code>.</li>
+      <li>Uses VADER-scored sentiment to calculate positive, negative, neutral, purchase-intent, and flagged-comment rates.</li>
+      <li>Classifies each creator as LOW, MEDIUM, HIGH, or UNKNOWN risk.</li></ul></div>
+    <div class="step"><div class="n">STEP 03</div><h4>Outreach drafting</h4><ul>
+      <li>Combines creator data, CRM records, tier, niche, deal type, and brand guidance.</li>
+      <li>Uses RAG retrieval from a Gymshark knowledge base for brand context.</li>
+      <li>Validates drafts for tier-appropriate tone, word limits, and banned phrases.</li></ul></div>
+    <div class="step"><div class="n">STEP 04</div><h4>Human review gates</h4><ul>
+      <li>Reviewers approve shortlisted creators, outreach drafts, and responses before the workflow moves on.</li>
+      <li>Keeps AI recommendations under human approval instead of fully automating partnership decisions.</li></ul></div>
+    <div class="step"><div class="n">STEP 05</div><h4>Product brief generation</h4><ul>
+      <li>Runs after a creator accepts outreach.</li>
+      <li>Recommends a product line based on the creator's niche and audience.</li>
+      <li>Generates a campaign brief, creative direction, deliverables, and promo code.</li></ul></div>
+    <div class="step"><div class="n">STEP 06</div><h4>Campaign analytics</h4><ul>
+      <li>Reads results from <code>campaign_performance.csv</code>.</li>
+      <li>Calculates ROI, conversion rate, cost per click, revenue, engagement, and top and bottom performers.</li>
+      <li>Breaks results down by creator tier and deal type.</li></ul></div>
+  </div>
+</section>
+
+<section>
+  <h2>APIs &amp; services</h2>
+  <dl class="defs">
+    <div><dt>FastAPI</dt><dd>Backend REST API for creators, analytics, outreach drafts, product briefs, risk data, and campaign actions.</dd></div>
+    <div><dt>Next.js</dt><dd>Frontend dashboard for Discovery, Outreach, Analytics, and Product Briefs.</dd></div>
+    <div><dt>LLM API</dt><dd>Optional TritonAI/OpenAI-compatible API for AI-generated outreach and briefs, with template-based fallbacks when no key is available.</dd></div>
+    <div><dt>RAG retrieval</dt><dd>Pulls relevant Gymshark partnership and brand documents to ground generated outreach.</dd></div>
+    <div><dt>MCP servers</dt><dd>Tools for creator scoring, risk checks, outreach drafting, and structured creator and campaign resources.</dd></div>
+    <div><dt>VADER</dt><dd>Local NLP library for comment sentiment classification (not an external API).</dd></div>
+  </dl>
+</section>
+
+<section>
+  <h2>Data used</h2>
+  <dl class="defs">
+    <div><dt><code>creators.csv</code></dt><dd>Curated creator prospect profiles and scoring attributes.</dd></div>
+    <div><dt><code>comment_sentiment.csv</code></dt><dd>VADER-scored YouTube comment records.</dd></div>
+    <div><dt><code>crm_records.csv</code></dt><dd>Simulated CRM pipeline and relationship data.</dd></div>
+    <div><dt><code>hypeauditor_intake_log.csv</code></dt><dd>Audience-quality and fraud-risk intake fields.</dd></div>
+    <div><dt><code>existing_partners.csv</code></dt><dd>Existing Gymshark partner records.</dd></div>
+    <div><dt><code>campaign_performance.csv</code></dt><dd>Synthetic campaign performance results.</dd></div>
+    <div><dt><code>outreach_responses.csv</code></dt><dd>Simulated yes/no creator responses used to test the workflow.</dd></div>
+  </dl>
+  <p class="note">The creator and comment datasets are structured research inputs stored locally. Campaign outcomes and outreach responses are simulated for testing.</p>
+</section>
+
+<section>
+  <h2>Presentation</h2>
+  <div class="viewer-wrap">
+    <div class="viewer"><div class="track"><img src="assets/slides/gym-01.jpg" alt="Gymshark slide 1" loading="lazy"><img src="assets/slides/gym-02.jpg" alt="Gymshark slide 2" loading="lazy"><img src="assets/slides/gym-03.jpg" alt="Gymshark slide 3" loading="lazy"><img src="assets/slides/gym-04.jpg" alt="Gymshark slide 4" loading="lazy"><img src="assets/slides/gym-05.jpg" alt="Gymshark slide 5" loading="lazy"><img src="assets/slides/gym-06.jpg" alt="Gymshark slide 6" loading="lazy"><img src="assets/slides/gym-07.jpg" alt="Gymshark slide 7" loading="lazy"><img src="assets/slides/gym-08.jpg" alt="Gymshark slide 8" loading="lazy"><img src="assets/slides/gym-09.jpg" alt="Gymshark slide 9" loading="lazy"><img src="assets/slides/gym-10.jpg" alt="Gymshark slide 10" loading="lazy"><img src="assets/slides/gym-11.jpg" alt="Gymshark slide 11" loading="lazy"></div></div>
+    <div class="vnav"><span class="count"></span><div style="display:flex;gap:12px;align-items:center"><a class="btn" href="assets/gymshark-deck.pdf" target="_blank" rel="noopener">Open PDF ↗</a><div class="vbtns"><button class="prev" aria-label="Previous slide">←</button><button class="next-s" aria-label="Next slide">→</button></div></div></div>
+  </div>
+</section>
+
+<a class="next" href="beyond-the-swipe.html"><div><small>Next project</small><b>Beyond the Swipe</b></div><span class="arrow">→</span></a>
+</div>
+
+</div></main>
+<footer><div class="wrap"><span>© 2026 Namratha K</span><a href="mailto:namratha.k1501@gmail.com">namratha.k1501@gmail.com</a></div></footer>
+<script>
+(function(){
+  var root=document.documentElement;
+  try{var t=localStorage.getItem('theme');if(t)root.setAttribute('data-theme',t);}catch(e){}
+  document.getElementById('theme').addEventListener('click',function(){
+    var cur=root.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+    var next=cur==='dark'?'light':'dark';root.setAttribute('data-theme',next);
+    try{localStorage.setItem('theme',next);}catch(e){}
+  });
+  var links=document.getElementById('links');
+  document.getElementById('menu').addEventListener('click',function(){links.classList.toggle('open');});
+})();
+</script>
+<script>
+document.querySelectorAll('.viewer-wrap').forEach(function(w){
+  var t=w.querySelector('.track'),n=t.children.length,c=w.querySelector('.count');
+  function idx(){return Math.round(t.scrollLeft/t.clientWidth);}
+  function upd(){c.textContent='Slide '+(idx()+1)+' of '+n;}
+  function go(d){t.scrollTo({left:(idx()+d)*t.clientWidth,behavior:'smooth'});}
+  w.querySelector('.prev').onclick=function(){go(-1)};
+  w.querySelector('.next-s').onclick=function(){go(1)};
+  t.addEventListener('scroll',function(){clearTimeout(t._s);t._s=setTimeout(upd,60);});
+  t.tabIndex=0;t.addEventListener('keydown',function(e){if(e.key==='ArrowRight')go(1);if(e.key==='ArrowLeft')go(-1);});
+  upd();
+});
+</script>
+</body>
+</html>

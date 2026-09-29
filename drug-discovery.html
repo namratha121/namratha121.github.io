@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Discovering Pharmaceutical Molecules | Namratha K</title>
+<meta name="description" content="IEEE-published research by Namratha K and team: a GAN that generates new drug-like molecules.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Discovering Pharmaceutical Molecules | Namratha K">
+<meta property="og:description" content="IEEE-published research by Namratha K and team: a GAN that generates new drug-like molecules.">
+<meta property="og:url" content="https://namratha121.github.io/drug-discovery.html">
+<meta property="og:image" content="https://namratha121.github.io/assets/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://namratha121.github.io/assets/og-image.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+.rtable{width:100%;border-collapse:collapse;margin-top:12px;font-size:.95em}
+.rtable th,.rtable td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line)}
+.rtable th{font-weight:600;color:var(--muted);font-size:13px;letter-spacing:.06em;text-transform:uppercase}
+.rtable tr.me td{color:var(--accent)}
+.rtable tr.me td{font-weight:600}
+.twrap{overflow-x:auto}
+.cap{color:var(--muted);font-size:14px;margin-top:10px}
+</style>
+</head>
+<body>
+<header>
+  <nav class="wrap">
+    <a href="index.html" class="logo">Namratha<span>.</span></a>
+    <ul class="links" id="links">
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#experience">Experience</a></li>
+      <li><a href="index.html#projects">Projects</a></li>
+      <li><a href="index.html#skills">Skills</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+      <li><a class="btn" href="assets/resume.pdf" target="_blank" rel="noopener">Résumé</a></li>
+    </ul>
+    <div style="display:flex;gap:8px">
+      <button class="theme" id="theme" aria-label="Toggle light and dark mode"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
+      <button class="theme menu" id="menu" aria-label="Open menu"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    </div>
+  </nav>
+</header>
+<main><div class="wrap">
+<a class="back" href="index.html#projects">← All projects</a>
+
+<div class="phero">
+  <p class="eyebrow">Published research · IEEE EECSI 2023</p>
+  <h1>Discovering Pharmaceutical Molecules with GANs</h1>
+  <p class="lede">A generative AI model that designs new drug-like molecules from scratch, published by IEEE and presented at the 10th International Conference on Electrical Engineering, Computer Science and Informatics.</p>
+</div>
+<dl class="pmeta">
+  <div><dt>Published</dt><dd>IEEE Xplore, EECSI 2023 (Palembang, Indonesia · Sept 2023)</dd></div>
+  <div><dt>Tools</dt><dd>Python, deep learning, GANs, graph neural networks, RDKit</dd></div>
+  <div><dt>Team</dt><dd>Namratha K, Padmapriya Mohan, Raxna Bojamma P J, Aditi Kulkarni · Advisor: Dr. Leena Chandrashekar, RNS Institute of Technology</dd></div>
+</dl>
+<div class="plinks">
+  <a class="btn solid" href="https://ieeexplore.ieee.org/document/10295896" target="_blank" rel="noopener">Read the paper ↗</a>
+  <a class="btn" href="https://github.com/namratha121/Small-Molecule-Drug-Design" target="_blank" rel="noopener">GitHub repo ↗</a>
+  <a class="btn" href="assets/discovering-pharmaceutical-molecules.pdf" target="_blank" rel="noopener">View deck ↗</a>
+  <a class="btn" href="assets/eecsi-certificate.pdf" target="_blank" rel="noopener">Presenter certificate ↗</a>
+</div>
+
+<div class="body">
+<section>
+  <h2>The problem</h2>
+  <p>Bringing one new drug to market takes around 12 years and about $2.6 billion. Much of that time goes into finding promising molecules to test. We asked whether a generative AI model could propose new, valid, drug-like molecules quickly and narrow down where chemists should look.</p>
+</section>
+
+<section>
+  <h2>Data</h2>
+  <ul class="plist">
+    <li>QM9, a standard benchmark of about 134,000 small organic molecules (up to 9 atoms of carbon, oxygen, nitrogen and fluorine).</li>
+    <li>Each molecule is represented as a graph: atoms are nodes and bonds are edges, stored as an atom list plus a bond matrix.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>How it works</h2>
+  <div class="steps">
+    <div class="step"><div class="n">THE GENERATOR</div><ul>
+      <li>Takes random noise and turns it into a candidate molecule.</li>
+      <li>A 3-layer neural network (128, 256, 512 units) outputs the atoms and the bonds between them.</li></ul></div>
+    <div class="step"><div class="n">THE DISCRIMINATOR</div><ul>
+      <li>Looks at a molecule and judges whether it is real (from QM9) or generated.</li>
+      <li>Uses graph convolution layers to read the molecule's structure.</li></ul></div>
+    <div class="step"><div class="n">TRAINING</div><ul>
+      <li>The two networks compete until the generator's molecules pass as real.</li>
+      <li>Used a Wasserstein GAN with gradient penalty to keep training stable (batch size 32, learning rate 0.0001).</li></ul></div>
+    <div class="step"><div class="n">EVALUATION</div><ul>
+      <li>Validity, novelty and uniqueness of the generated molecules.</li>
+      <li>Drug-likeness (QED), solubility, synthetic accessibility and diversity.</li></ul></div>
+  </div>
+</section>
+
+<section>
+  <h2>Results</h2>
+  <p>Benchmarked against two published models, MolGAN and ORGAN, after 300 epochs on a 5,000-molecule sample of QM9.</p>
+  <div class="twrap"><table class="rtable">
+    <tr><th>Model</th><th>Validity</th><th>Novelty</th><th>Drug-likeness (QED)</th><th>Run time</th></tr>
+    <tr><td>MolGAN</td><td>87.7%</td><td>97.7%</td><td>–</td><td>–</td></tr>
+    <tr><td>ORGAN</td><td>96.1%</td><td>–</td><td>0.52</td><td>10.2</td></tr>
+    <tr class="me"><td>Our GAN</td><td>95.6%</td><td>98.4%</td><td>0.53</td><td>5.8</td></tr>
+  </table></div>
+  <ul class="plist" style="margin-top:16px">
+    <li>95.6% of generated molecules were chemically valid, well above MolGAN and close to ORGAN.</li>
+    <li>98.4% of valid molecules were new, meaning they did not appear in the training data.</li>
+    <li>Matched ORGAN on drug-likeness in roughly half the run time.</li>
+  </ul>
+  <p class="note">Limitation: solubility scored lower than both benchmarks (0.38 vs about 0.54), likely due to mode collapse, where the generator keeps producing similar molecules.</p>
+</section>
+
+<section>
+  <h2>Impact</h2>
+  <p>The model shows that a GAN can reliably generate valid, novel, drug-like candidates, giving chemists a faster, data-driven starting point for deciding which molecules are worth testing in the lab.</p>
+</section>
+
+<section>
+  <h2>Recognition</h2>
+  <ul class="plist">
+    <li>Presented the paper at the 10th International Conference on Electrical Engineering, Computer Science and Informatics (EECSI 2023), Palembang, Indonesia, September 20–21, 2023.</li>
+    <li>Published in IEEE Xplore (DOI <a href="https://doi.org/10.1109/EECSI59885.2023.10295896" target="_blank" rel="noopener">10.1109/EECSI59885.2023.10295896</a>).</li>
+  </ul>
+  <a href="assets/eecsi-certificate.pdf" target="_blank" rel="noopener" style="display:block;max-width:560px;margin-top:16px"><img src="assets/eecsi-certificate.jpg" alt="EECSI 2023 Certificate of Appreciation awarded to Namratha K as presenter of Discovering Novel Pharmaceutical Molecules with Generative Adversarial Networks" loading="lazy" style="width:100%;height:auto;border-radius:10px;border:1px solid var(--line)"></a>
+  <p class="cap">Certificate of Appreciation, awarded for presenting the paper. Click to open the full certificate.</p>
+</section>
+
+<section>
+  <h2>Presentation</h2>
+  <div class="viewer-wrap">
+    <div class="viewer"><div class="track"><img src="assets/slides/gan-01.jpg" alt="Discovering Pharmaceutical Molecules slide 1" loading="lazy"><img src="assets/slides/gan-02.jpg" alt="Discovering Pharmaceutical Molecules slide 2" loading="lazy"><img src="assets/slides/gan-03.jpg" alt="Discovering Pharmaceutical Molecules slide 3" loading="lazy"><img src="assets/slides/gan-04.jpg" alt="Discovering Pharmaceutical Molecules slide 4" loading="lazy"><img src="assets/slides/gan-05.jpg" alt="Discovering Pharmaceutical Molecules slide 5" loading="lazy"><img src="assets/slides/gan-06.jpg" alt="Discovering Pharmaceutical Molecules slide 6" loading="lazy"><img src="assets/slides/gan-07.jpg" alt="Discovering Pharmaceutical Molecules slide 7" loading="lazy"><img src="assets/slides/gan-08.jpg" alt="Discovering Pharmaceutical Molecules slide 8" loading="lazy"><img src="assets/slides/gan-09.jpg" alt="Discovering Pharmaceutical Molecules slide 9" loading="lazy"><img src="assets/slides/gan-10.jpg" alt="Discovering Pharmaceutical Molecules slide 10" loading="lazy"><img src="assets/slides/gan-11.jpg" alt="Discovering Pharmaceutical Molecules slide 11" loading="lazy"><img src="assets/slides/gan-12.jpg" alt="Discovering Pharmaceutical Molecules slide 12" loading="lazy"><img src="assets/slides/gan-13.jpg" alt="Discovering Pharmaceutical Molecules slide 13" loading="lazy"><img src="assets/slides/gan-14.jpg" alt="Discovering Pharmaceutical Molecules slide 14" loading="lazy"><img src="assets/slides/gan-15.jpg" alt="Discovering Pharmaceutical Molecules slide 15" loading="lazy"><img src="assets/slides/gan-16.jpg" alt="Discovering Pharmaceutical Molecules slide 16" loading="lazy"><img src="assets/slides/gan-17.jpg" alt="Discovering Pharmaceutical Molecules slide 17" loading="lazy"></div></div>
+    <div class="vnav"><span class="count"></span><div style="display:flex;gap:12px;align-items:center"><a class="btn" href="assets/discovering-pharmaceutical-molecules.pdf" target="_blank" rel="noopener">Open PDF ↗</a><div class="vbtns"><button class="prev" aria-label="Previous slide">←</button><button class="next-s" aria-label="Next slide">→</button></div></div></div>
+  </div>
+</section>
+
+<a class="next" href="gymshark.html"><div><small>Next project</small><b>Gymshark AI Coworker</b></div><span class="arrow">→</span></a>
+</div>
+
+</div></main>
+<footer><div class="wrap"><span>© 2026 Namratha K</span><a href="mailto:namratha.k1501@gmail.com">namratha.k1501@gmail.com</a></div></footer>
+<script>
+(function(){
+  var root=document.documentElement;
+  try{var t=localStorage.getItem('theme');if(t)root.setAttribute('data-theme',t);}catch(e){}
+  document.getElementById('theme').addEventListener('click',function(){
+    var cur=root.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+    var next=cur==='dark'?'light':'dark';root.setAttribute('data-theme',next);
+    try{localStorage.setItem('theme',next);}catch(e){}
+  });
+  var links=document.getElementById('links');
+  document.getElementById('menu').addEventListener('click',function(){links.classList.toggle('open');});
+})();
+</script>
+<script>
+document.querySelectorAll('.viewer-wrap').forEach(function(w){
+  var t=w.querySelector('.track'),n=t.children.length,c=w.querySelector('.count');
+  function idx(){return Math.round(t.scrollLeft/t.clientWidth);}
+  function upd(){c.textContent='Slide '+(idx()+1)+' of '+n;}
+  function go(d){t.scrollTo({left:(idx()+d)*t.clientWidth,behavior:'smooth'});}
+  w.querySelector('.prev').onclick=function(){go(-1)};
+  w.querySelector('.next-s').onclick=function(){go(1)};
+  t.addEventListener('scroll',function(){clearTimeout(t._s);t._s=setTimeout(upd,60);});
+  t.tabIndex=0;t.addEventListener('keydown',function(e){if(e.key==='ArrowRight')go(1);if(e.key==='ArrowLeft')go(-1);});
+  upd();
+});
+</script>
+</body>
+</html>

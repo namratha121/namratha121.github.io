@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Creative Gaming Uplift | Namratha K</title>
+<meta name="description" content="Uplift modeling by Namratha K and team to target in-game ads at players the ad persuades to buy.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Creative Gaming Uplift | Namratha K">
+<meta property="og:description" content="Uplift modeling by Namratha K and team to target in-game ads at players the ad persuades to buy.">
+<meta property="og:url" content="https://namratha121.github.io/creative-gaming.html">
+<meta property="og:image" content="https://namratha121.github.io/assets/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://namratha121.github.io/assets/og-image.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+.rtable{width:100%;border-collapse:collapse;margin-top:12px;font-size:.95em}
+.rtable th,.rtable td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line)}
+.rtable th{font-weight:600;color:var(--muted);font-size:13px;letter-spacing:.06em;text-transform:uppercase}
+.rtable tr.me td{color:var(--accent)}
+.rtable tr.me td{font-weight:600}
+.twrap{overflow-x:auto}
+.cap{color:var(--muted);font-size:14px;margin-top:10px}
+</style>
+</head>
+<body>
+<header>
+  <nav class="wrap">
+    <a href="index.html" class="logo">Namratha<span>.</span></a>
+    <ul class="links" id="links">
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#experience">Experience</a></li>
+      <li><a href="index.html#projects">Projects</a></li>
+      <li><a href="index.html#skills">Skills</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+      <li><a class="btn" href="assets/resume.pdf" target="_blank" rel="noopener">Résumé</a></li>
+    </ul>
+    <div style="display:flex;gap:8px">
+      <button class="theme" id="theme" aria-label="Toggle light and dark mode"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
+      <button class="theme menu" id="menu" aria-label="Open menu"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    </div>
+  </nav>
+</header>
+<main><div class="wrap">
+<a class="back" href="index.html#projects">← All projects</a>
+
+<div class="phero">
+  <p class="eyebrow">Academic project · Customer Analytics</p>
+  <h1>Creative Gaming Uplift Modeling</h1>
+  <p class="lede">Finding the players an in-app ad actually persuades to buy, instead of the ones who would have bought anyway, to get the most profit from an ad campaign.</p>
+</div>
+<dl class="pmeta">
+  <div><dt>Course</dt><dd>Customer Analytics, UC San Diego</dd></div>
+  <div><dt>Tools</dt><dd>Python, Polars, pyrsm, scikit-learn, XGBoost, plotnine</dd></div>
+  <div><dt>Team</dt><dd>Namratha K, Aanya Sikka, Yug Gadhiya</dd></div>
+</dl>
+<div class="plinks">
+  <a class="btn solid" href="https://github.com/namratha121/creative-gaming-uplift" target="_blank" rel="noopener">View code on GitHub ↗</a>
+</div>
+
+<div class="body">
+<section>
+  <h2>The problem</h2>
+  <p>Creative Gaming's mobile game Space Pirates launched a $14.99 in-app campaign, and adoption was slower than expected. The team tested an in-app ad to drive purchases. The question was not "who is likely to buy?" but "who buys <em>because</em> of the ad?", since showing an ad to someone who would buy anyway adds cost without adding sales.</p>
+</section>
+
+<section>
+  <h2>Data</h2>
+  <ul class="plist">
+    <li>A randomized experiment: 30,000 players saw the ad and 30,000 did not.</li>
+    <li>The ad roughly doubled conversion, from 6% without it to 13% with it.</li>
+    <li>Player behavior such as game level, playtime, sessions and past purchases, split 70/30 into training and test sets.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>How we approached it</h2>
+  <div class="steps">
+    <div class="step"><div class="n">PROPENSITY MODEL</div><ul>
+      <li>Predicts how likely a player is to buy if shown the ad.</li>
+      <li>Tends to target "sure things" who would buy anyway.</li></ul></div>
+    <div class="step"><div class="n">UPLIFT MODEL</div><ul>
+      <li>Trains one model on players who saw the ad and one on players who didn't.</li>
+      <li>Uplift = chance of buying with the ad minus chance without it.</li></ul></div>
+    <div class="step"><div class="n">FOUR ALGORITHMS</div><ul>
+      <li>Built both approaches with logistic regression, a neural network, a random forest and XGBoost.</li>
+      <li>Tuned each with cross-validated grid search.</li></ul></div>
+    <div class="step"><div class="n">PROFIT TEST</div><ul>
+      <li>Scaled to 120,000 players and targeted the top 25% (30,000) under each model.</li>
+      <li>Incremental profit = extra buyers × $14.99 − $1.50 per player targeted.</li></ul></div>
+  </div>
+</section>
+
+<section>
+  <h2>Results</h2>
+  <p>Incremental profit from targeting 30,000 players:</p>
+  <div class="twrap"><table class="rtable">
+    <tr><th>Algorithm</th><th>Uplift model</th><th>Propensity model</th><th>Uplift advantage</th></tr>
+    <tr class="me"><td>Random forest</td><td>$58,066</td><td>$47,382</td><td>+$10,684</td></tr>
+    <tr><td>Neural network</td><td>$56,997</td><td>$48,719</td><td>+$8,277</td></tr>
+    <tr><td>XGBoost</td><td>$56,373</td><td>$43,046</td><td>+$13,327</td></tr>
+    <tr><td>Logistic regression</td><td>$45,908</td><td>–</td><td>–</td></tr>
+  </table></div>
+  <ul class="plist" style="margin-top:16px">
+    <li>Every uplift model beat its propensity counterpart. The best, a random forest, earned $58,066, about 23% more than targeting the same players by likelihood to buy.</li>
+    <li>For roughly the bottom 10% of players, the ad lowered the chance of buying. Uplift modeling identifies these players so the campaign can leave them alone.</li>
+    <li>Uplift models favored a smaller target (about 25–35% of players) than propensity models (45–50%), so the campaign spends less and earns more.</li>
+  </ul>
+  <figure style="margin:20px 0 0"><img src="assets/cg-uplift-models.jpg" alt="Incremental uplift curves for the tuned random forest, neural network, XGBoost and logistic uplift models" loading="lazy" style="width:100%;height:auto;border-radius:10px;border:1px solid var(--line);background:#fff"><figcaption class="cap">Incremental uplift by share of players targeted, for each uplift model.</figcaption></figure>
+  <figure style="margin:20px 0 0"><img src="assets/cg-uplift-bins.jpg" alt="Uplift by targeting bin showing positive uplift for most players and negative uplift in the last two bins" loading="lazy" style="width:100%;height:auto;border-radius:10px;border:1px solid var(--line);background:#fff"><figcaption class="cap">Uplift by group (logistic model): most groups respond to the ad, but the last two are negative.</figcaption></figure>
+</section>
+
+<section>
+  <h2>Impact</h2>
+  <p>By targeting only the 25% of players most persuaded by the ad, the uplift model earns $58K in incremental profit, 23% more than propensity targeting and $70K better than random targeting, which loses money.</p>
+</section>
+
+<a class="next" href="drug-discovery.html"><div><small>Next project</small><b>Discovering Pharmaceutical Molecules</b></div><span class="arrow">→</span></a>
+</div>
+</div></main>
+<footer><div class="wrap"><span>© 2026 Namratha K</span><a href="mailto:namratha.k1501@gmail.com">namratha.k1501@gmail.com</a></div></footer>
+<script>
+(function(){
+  var root=document.documentElement;
+  try{var t=localStorage.getItem('theme');if(t)root.setAttribute('data-theme',t);}catch(e){}
+  document.getElementById('theme').addEventListener('click',function(){
+    var cur=root.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+    var next=cur==='dark'?'light':'dark';root.setAttribute('data-theme',next);
+    try{localStorage.setItem('theme',next);}catch(e){}
+  });
+  var links=document.getElementById('links');
+  document.getElementById('menu').addEventListener('click',function(){links.classList.toggle('open');});
+})();
+</script>
+<script>
+document.querySelectorAll('.viewer-wrap').forEach(function(w){
+  var t=w.querySelector('.track'),n=t.children.length,c=w.querySelector('.count');
+  function idx(){return Math.round(t.scrollLeft/t.clientWidth);}
+  function upd(){c.textContent='Slide '+(idx()+1)+' of '+n;}
+  function go(d){t.scrollTo({left:(idx()+d)*t.clientWidth,behavior:'smooth'});}
+  w.querySelector('.prev').onclick=function(){go(-1)};
+  w.querySelector('.next-s').onclick=function(){go(1)};
+  t.addEventListener('scroll',function(){clearTimeout(t._s);t._s=setTimeout(upd,60);});
+  t.tabIndex=0;t.addEventListener('keydown',function(e){if(e.key==='ArrowRight')go(1);if(e.key==='ArrowLeft')go(-1);});
+  upd();
+});
+</script>
+</body>
+</html>

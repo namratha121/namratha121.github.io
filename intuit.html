@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Intuit Upgrade Targeting | Namratha K</title>
+<meta name="description" content="Predictive models by Namratha K and team that choose which businesses receive Intuit QuickBooks upgrade mailers.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Intuit Upgrade Targeting | Namratha K">
+<meta property="og:description" content="Predictive models by Namratha K and team that choose which businesses receive Intuit QuickBooks upgrade mailers.">
+<meta property="og:url" content="https://namratha121.github.io/intuit.html">
+<meta property="og:image" content="https://namratha121.github.io/assets/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://namratha121.github.io/assets/og-image.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+.rtable{width:100%;border-collapse:collapse;margin-top:12px;font-size:.95em}
+.rtable th,.rtable td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line)}
+.rtable th{font-weight:600;color:var(--muted);font-size:13px;letter-spacing:.06em;text-transform:uppercase}
+.rtable tr.me td{color:var(--accent)}
+.rtable tr.me td{font-weight:600}
+.twrap{overflow-x:auto}
+.cap{color:var(--muted);font-size:14px;margin-top:10px}
+</style>
+</head>
+<body>
+<header>
+  <nav class="wrap">
+    <a href="index.html" class="logo">Namratha<span>.</span></a>
+    <ul class="links" id="links">
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#experience">Experience</a></li>
+      <li><a href="index.html#projects">Projects</a></li>
+      <li><a href="index.html#skills">Skills</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+      <li><a class="btn" href="assets/resume.pdf" target="_blank" rel="noopener">Résumé</a></li>
+    </ul>
+    <div style="display:flex;gap:8px">
+      <button class="theme" id="theme" aria-label="Toggle light and dark mode"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
+      <button class="theme menu" id="menu" aria-label="Open menu"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    </div>
+  </nav>
+</header>
+<main><div class="wrap">
+<a class="back" href="index.html#projects">← All projects</a>
+
+<div class="phero">
+  <p class="eyebrow">Academic project · Customer Analytics</p>
+  <h1>Intuit QuickBooks Upgrade Targeting</h1>
+  <p class="lede">Predictive models that decide which small businesses should get a second QuickBooks upgrade mailer, so every letter sent is expected to pay for itself.</p>
+</div>
+<dl class="pmeta">
+  <div><dt>Course</dt><dd>Customer Analytics, UC San Diego</dd></div>
+  <div><dt>Tools</dt><dd>Python, Polars, pyrsm, scikit-learn, XGBoost, plotnine</dd></div>
+  <div><dt>Team</dt><dd>Namratha K, Aanya Sikka, Yug Gadhiya</dd></div>
+</dl>
+<div class="plinks">
+  <a class="btn solid" href="https://github.com/namratha121/intuit-upgrade-targeting" target="_blank" rel="noopener">View code on GitHub ↗</a>
+</div>
+
+<div class="body">
+<section>
+  <h2>The problem</h2>
+  <p>Intuit mailed an upgrade offer for QuickBooks to small businesses in a first wave. Before sending a second wave, the team needed to know who was worth mailing again. Each letter costs $1.41 and each upgrade brings in $60 in margin, and second-wave response is expected to be about half of the first.</p>
+</section>
+
+<section>
+  <h2>Data</h2>
+  <ul class="plist">
+    <li>75,000 businesses from wave 1, with location, purchase history, order counts, spend, time since last order, and which QuickBooks version they own.</li>
+    <li>Split 70/30: 52,500 businesses to train the models and 22,500 held out to test them.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>How we approached it</h2>
+  <div class="steps">
+    <div class="step"><div class="n">FOUR MODELS</div><ul>
+      <li>Logistic regression with interaction terms, a neural network, a random forest and XGBoost.</li>
+      <li>Tuned the neural network, random forest and XGBoost with cross-validated grid search.</li></ul></div>
+    <div class="step"><div class="n">WHAT DRIVES RESPONSE</div><ul>
+      <li>Businesses that had upgraded before, ordered recently and ordered more often were most likely to respond.</li>
+      <li>Owners of the older version 1 responded more, especially frequent buyers.</li></ul></div>
+    <div class="step"><div class="n">ONE COMBINED SCORE</div><ul>
+      <li>Averaged the four models into an ensemble score for each business.</li>
+      <li>Halved each score to reflect the lower response expected in wave 2.</li></ul></div>
+    <div class="step"><div class="n">THE MAILING RULE</div><ul>
+      <li>Break-even response rate = $1.41 ÷ $60 = 2.35%.</li>
+      <li>Mail a business only if its wave-2 score is above 2.35%.</li></ul></div>
+  </div>
+</section>
+
+<section>
+  <h2>Challenges</h2>
+  <div class="steps">
+    <div class="step"><div class="n">TWO ZIP CODES SKEWING THE DATA</div><ul>
+      <li>ZIP codes 00801 and 00804 (US Virgin Islands) had response rates of 41% and 34%, versus 4.8% overall.</li>
+      <li>Both fall in zip bin 1, so they inflated that bin's apparent response rate.</li></ul></div>
+    <div class="step"><div class="n">HOW WE HANDLED IT</div><ul>
+      <li>Kept the zip bins and added a separate flag for each of the two ZIP codes.</li>
+      <li>Their effect is now captured on its own, and the other zip bins reflect true regional differences.</li></ul></div>
+  </div>
+</section>
+
+<section>
+  <h2>Results</h2>
+  <div class="twrap"><table class="rtable">
+    <tr><th>Model</th><th>Test AUC</th></tr>
+    <tr><td>Logistic regression</td><td>0.767</td></tr>
+    <tr><td>XGBoost</td><td>0.767</td></tr>
+    <tr><td>Neural network</td><td>0.765</td></tr>
+    <tr><td>Random forest</td><td>0.764</td></tr>
+  </table></div>
+  <ul class="plist" style="margin-top:16px">
+    <li>All four models ranked customers almost equally well on unseen data, so we combined them rather than betting on one.</li>
+    <li>The top 10% of businesses ranked by the model contained about 42% of all responders, roughly 4x better than mailing at random.</li>
+  </ul>
+  <figure style="margin:20px 0 0"><img src="assets/intuit-gains.jpg" alt="Cumulative gains chart comparing logistic regression, neural network, random forest and XGBoost on the test set" loading="lazy" style="width:100%;height:auto;border-radius:10px;border:1px solid var(--line);background:#fff"><figcaption class="cap">Cumulative gains on the test set: the share of all responders captured as more of the list is mailed.</figcaption></figure>
+</section>
+
+<section>
+  <h2>Impact</h2>
+  <p>We tested the model on a held-out group of 22,500 businesses. It selected 13,535 (60%) for the wave-2 mailing, which is expected to produce about 478 upgrades, $28,650 in revenue and $9,566 in profit.</p>
+  <div class="twrap"><table class="rtable">
+    <tr><th>Scaled to 763,334 eligible businesses</th><th>Model-based targeting</th></tr>
+    <tr><td>Businesses mailed</td><td>~459,000</td></tr>
+    <tr><td>Expected upgrades</td><td>~16,200</td></tr>
+    <tr><td>Revenue</td><td>~$972K</td></tr>
+    <tr><td>Mailing cost</td><td>~$647K</td></tr>
+    <tr class="me"><td>Profit</td><td>~$325K</td></tr>
+  </table></div>
+  <p style="margin-top:16px">Mailing every eligible business would earn only about $46K, so model-based targeting delivers roughly 7× the profit.</p>
+</section>
+
+<a class="next" href="creative-gaming.html"><div><small>Next project</small><b>Creative Gaming Uplift Modeling</b></div><span class="arrow">→</span></a>
+</div>
+</div></main>
+<footer><div class="wrap"><span>© 2026 Namratha K</span><a href="mailto:namratha.k1501@gmail.com">namratha.k1501@gmail.com</a></div></footer>
+<script>
+(function(){
+  var root=document.documentElement;
+  try{var t=localStorage.getItem('theme');if(t)root.setAttribute('data-theme',t);}catch(e){}
+  document.getElementById('theme').addEventListener('click',function(){
+    var cur=root.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+    var next=cur==='dark'?'light':'dark';root.setAttribute('data-theme',next);
+    try{localStorage.setItem('theme',next);}catch(e){}
+  });
+  var links=document.getElementById('links');
+  document.getElementById('menu').addEventListener('click',function(){links.classList.toggle('open');});
+})();
+</script>
+<script>
+document.querySelectorAll('.viewer-wrap').forEach(function(w){
+  var t=w.querySelector('.track'),n=t.children.length,c=w.querySelector('.count');
+  function idx(){return Math.round(t.scrollLeft/t.clientWidth);}
+  function upd(){c.textContent='Slide '+(idx()+1)+' of '+n;}
+  function go(d){t.scrollTo({left:(idx()+d)*t.clientWidth,behavior:'smooth'});}
+  w.querySelector('.prev').onclick=function(){go(-1)};
+  w.querySelector('.next-s').onclick=function(){go(1)};
+  t.addEventListener('scroll',function(){clearTimeout(t._s);t._s=setTimeout(upd,60);});
+  t.tabIndex=0;t.addEventListener('keydown',function(e){if(e.key==='ArrowRight')go(1);if(e.key==='ArrowLeft')go(-1);});
+  upd();
+});
+</script>
+</body>
+</html>
